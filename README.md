@@ -61,7 +61,6 @@ async def handle_sensor_reading():
         publish_queue.put('{"reading": 0.2334}')
         await uasyncio.sleep(2)
 
-
 async def main():
     uasyncio.create_task(process_publish_queue())
     uasyncio.create_task(handle_sensor_reading())
@@ -70,5 +69,4 @@ async def main():
         await uasyncio.sleep(10000)
 
 uasyncio.run(main())
-
 ```
