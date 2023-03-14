@@ -42,7 +42,7 @@ class AsyncQueue:
 
   # Gets the next async item. If the queue is empty, it will await until
   # another item is put into the queue. This allows us to consume the queue
-  # infinitely, without blocking the thread.
+  # continuously, without blocking the event loop.
   async def __anext__(self):
       if self.is_empty():
         self._item_added_event.clear()
