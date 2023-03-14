@@ -1,3 +1,5 @@
+import uasyncio as asyncio
+
 class Expect:
   def __init__(self, value):
     self.value = value
@@ -64,7 +66,7 @@ def async_spy():
 def expect(value):
     return Expect(value)
 
-async def test(*functions):
+async def test_runner(functions):
   print('\n------------------------------------------------')
   passed = 0
   failed = 0
@@ -74,10 +76,10 @@ async def test(*functions):
 
     try:
       await test_function()
-      print('PASS', name)
+      print('> PASS', name)
       passed += 1
     except Exception as e:
-      print('FAIL', name)
+      print('> FAIL', name)
       print(e)
       failed += 1
   
@@ -85,3 +87,12 @@ async def test(*functions):
   print('-----------')
   print('Passed: {}'.format(passed))
   print('Failed: {}\n'.format(failed))
+
+test_functions = []
+
+def test(fn):
+  global test_functions
+  test_functions.append(fn)
+
+def run():
+  asyncio.run(test_runner(test_functions))

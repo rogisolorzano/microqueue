@@ -1,6 +1,5 @@
-from microtest import test, expect
+from microtest import test, run, expect
 from async_queue import AsyncQueue
-import uasyncio
 
 async def collect_items(queue):
   items = []
@@ -11,6 +10,7 @@ async def collect_items(queue):
      break
   return items
 
+@test
 async def it_should_put_and_consume_items_in_the_queue():
   queue = AsyncQueue(10)
   queue.put('hello 1')
@@ -22,6 +22,7 @@ async def it_should_put_and_consume_items_in_the_queue():
 
   expect(items).to_be(['hello 1', 1, {'a': 1}, ('tuple', 'test')])
 
+@test
 async def it_should_discard_overflowed_items():
   queue = AsyncQueue(4)
   queue.put(1)
@@ -37,6 +38,7 @@ async def it_should_discard_overflowed_items():
   expect(items).to_be([3, 4, 5, 6])
   expect(queue.discard_count).to_be(2)
 
+@test
 async def it_should_enforce_a_min_capacity_of_3():
   queue = AsyncQueue(1)
   queue.put(1)
@@ -48,10 +50,4 @@ async def it_should_enforce_a_min_capacity_of_3():
 
   expect(items).to_be([2, 3, 4])
 
-uasyncio.run(
-  test(
-    it_should_put_and_consume_items_in_the_queue,
-    it_should_discard_overflowed_items,
-    it_should_enforce_a_min_capacity_of_3
-  )
-)
+run()
