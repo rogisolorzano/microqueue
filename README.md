@@ -3,7 +3,7 @@
 An async circular queue using uasyncio, built for using with micropython.
 
 ## Usage
-Just copy `async_queue.py` over to your wherever you're using it.
+Just copy `async_queue.py` over to wherever you're using it.
 
 There's a minifed version in `/release` if you'd prefer. The main `async_queue.py` is intentionally verbose.
 

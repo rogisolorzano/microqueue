@@ -1,4 +1,4 @@
-from test_suite import test, expect
+from microtest import test, expect
 from async_queue import AsyncQueue
 import uasyncio
 
