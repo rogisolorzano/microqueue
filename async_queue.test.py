@@ -7,8 +7,7 @@ async def collect_items(queue):
     items.append(item)
     # Break in test so as to not consume from the queue forever.
     if (queue.is_empty()):
-     break
-  return items
+     return items
 
 @test
 async def it_should_put_and_consume_items_in_the_queue():
