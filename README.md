@@ -70,3 +70,6 @@ async def main():
 
 uasyncio.run(main())
 ```
+
+## Near term roadmap
+- Adding the ability to pause and resume the queue (useful for situations like pausing on WiFi disconnect then resuming on re-connection)
